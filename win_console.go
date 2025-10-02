@@ -4,6 +4,7 @@ package console
 
 import (
 	_ "embed"
+	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -62,7 +63,7 @@ func ConsoleControl(op ConsoleOp) error {
 	case ConsoleOpRestore:
 		arg = "RESTORE"
 	default:
-		return Fatalf("unexpected op: %v", op)
+		return fmt.Errorf("unexpected op: %v", op)
 	}
 
 	err = exec.Command(cwe, arg).Run()
